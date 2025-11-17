@@ -1,7 +1,11 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LockerController;
+use App\Http\Controllers\DepositController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::resource('lockers', LockerController::class);
+Route::resource('deposits', DepositController::class);
+
+Route::post('/pickup/validate', [DepositController::class, 'validatePickup'])
+    ->name('pickup.validate');
+

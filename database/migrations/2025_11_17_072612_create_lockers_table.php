@@ -9,13 +9,16 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
         Schema::create('lockers', function (Blueprint $table) {
             $table->id();
+            $table->string('locker_number');
+            $table->enum('status', ['available', 'occupied', 'maintenance'])->default('available');
             $table->timestamps();
         });
     }
+
 
     /**
      * Reverse the migrations.
