@@ -9,13 +9,17 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
         Schema::create('notifications', function (Blueprint $table) {
             $table->id();
+            $table->string('phone');
+            $table->text('message');
+            $table->string('status')->default('pending');
             $table->timestamps();
         });
     }
+
 
     /**
      * Reverse the migrations.
