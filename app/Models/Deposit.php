@@ -20,4 +20,3 @@ class Deposit extends Model
         return $this->belongsTo(Locker::class);
     }
 }
-

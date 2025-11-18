@@ -8,13 +8,11 @@ class Locker extends Model
 {
     protected $fillable = [
         'locker_number',
-        'status',
+        'status'
     ];
 
-    public function deposits()
+    public function deposit()
     {
         return $this->hasMany(Deposit::class);
     }
 }
-
-

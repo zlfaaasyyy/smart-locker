@@ -2,11 +2,23 @@
 
 namespace App\Services;
 
-class WhatsAppService 
+use Illuminate\Support\Facades\Http;
+
+class WhatsAppService
 {
-    public function sendMessage($to, $message)
+    public function sendMessage($target, $message)
     {
-        // Dummy dulu, nanti di Day 4 kita isi API yang asli
-        return true;
+        $token = env('FONNTE_TOKEN');
+        $sender = env('FONNTE_SENDER');
+
+        $response = Http::withHeaders([
+            'Authorization' => $token
+        ])->post('https://api.fonnte.com/send', [
+            'target' => $target,
+            'message' => $message,
+            'device' => $sender
+        ]);
+
+        return $response->json();
     }
 }
